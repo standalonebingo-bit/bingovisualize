@@ -1,0 +1,349 @@
+﻿/* Global font used across the page. */
+:root {
+  font-family: "Sora", "Segoe UI", Tahoma, sans-serif;
+}
+
+/* Consistent box sizing so padding and borders do not break sizing math. */
+* {
+  box-sizing: border-box;
+}
+
+/* Full-page background and base text color for the app shell. */
+body {
+  margin: 0;
+  display: block;
+  min-width: 320px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e2b3f 0%, #0f1622 55%, #0a0f18 100%);
+  color: #e8edf4;
+}
+
+/* Ensure the React root stretches to full viewport height. */
+#root {
+  min-height: 100vh;
+}
+
+/* Main page wrapper spacing. */
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  padding: 32px 24px;
+}
+
+/* Header container width and spacing above the board. */
+.board-header {
+  max-width: 1840px;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+/* Main title appearance. */
+.board-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+/* Helper text under the title. */
+.board-header p {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  color: #b7c2d3;
+}
+
+/* Horizontal scroll safety for smaller screens. */
+.board-wrap {
+  max-width: 1840px;
+  margin: 0 auto;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+/* Stack the four board rows with consistent row gaps. */
+.bingo-board {
+  min-width: 1770px;
+  display: grid;
+  gap: 12px;
+}
+
+/* 12-column row: 1 label column + 11 task columns. */
+.bingo-row {
+  display: grid;
+  grid-template-columns: 240px repeat(11, minmax(125px, 1fr));
+  gap: 12px;
+}
+
+.column-header-row {
+  display: grid;
+  grid-template-columns: 240px repeat(11, minmax(125px, 1fr));
+  gap: 12px;
+}
+
+.column-header-corner,
+.column-header-cell {
+  min-height: 52px;
+  border-radius: 10px;
+  border: 1px solid rgba(161, 183, 214, 0.28);
+  background: linear-gradient(165deg, rgba(36, 52, 75, 0.96), rgba(22, 33, 49, 0.96));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.column-header-corner {
+  color: #c6d4e8;
+}
+
+/* Shared tile shell for row labels and task tiles. */
+.row-label,
+.tile {
+  min-height: 118px;
+  border-radius: 12px;
+  border: 1px solid rgba(161, 183, 214, 0.28);
+  background: linear-gradient(165deg, rgba(35, 48, 69, 0.95), rgba(24, 32, 48, 0.95));
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Row-label tiles use a slightly stronger background than tasks. */
+.row-label {
+  background: linear-gradient(165deg, rgba(44, 66, 96, 0.98), rgba(26, 41, 61, 0.98));
+}
+
+/* Primary row-label text. */
+.label-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Secondary row-label text. */
+.label-subtitle {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #c6d4e8;
+}
+
+/* Interactive task tile behavior. */
+.tile {
+  cursor: pointer;
+  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+}
+
+/* Small hover lift for better visual feedback. */
+.tile:hover {
+  transform: translateY(-1px);
+  border-color: rgba(196, 216, 244, 0.52);
+}
+
+/* Keyboard accessibility ring for focused tiles. */
+.tile:focus-visible {
+  outline: 2px solid #96c2ff;
+  outline-offset: 2px;
+}
+
+/* Task description text. */
+.tile-title {
+  font-size: 0.87rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Editable progress field (e.g. 0/4 -> 1/4). */
+.tile-progress-input {
+  width: 86%;
+  margin-top: 8px;
+  padding: 4px 6px;
+  border: 1px solid rgba(173, 192, 217, 0.35);
+  border-radius: 7px;
+  background: rgba(10, 16, 24, 0.45);
+  color: #d8e4f3;
+  text-align: center;
+  font-size: 0.75rem;
+  font-family: inherit;
+}
+
+/* Progress input focus styling for readability while editing. */
+.tile-progress-input:focus {
+  outline: 1px solid #98c5ff;
+  border-color: #98c5ff;
+  background: rgba(13, 22, 33, 0.7);
+}
+
+/* Numeric progress control wrapper with +/- buttons and centered value. */
+.progress-counter {
+
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 26px 1fr 26px;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Counter action buttons for increment/decrement. */
+.counter-btn {
+  height: 24px;
+  border: 1px solid rgba(173, 192, 217, 0.45);
+  border-radius: 6px;
+  background: transparent;
+  color: #d8e4f3;
+  font-size: 0.9rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Button focus state for keyboard accessibility. */
+.counter-btn:focus-visible {
+  outline: 1px solid #98c5ff;
+  outline-offset: 1px;
+}
+
+/* Readout text displayed between +/- buttons. */
+.counter-value {
+  border: 1px solid rgba(173, 192, 217, 0.35);
+  border-radius: 7px;
+  background: transparent;
+  color: #d8e4f3;
+  font-size: 0.75rem;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile-subchecklist {
+  margin-top: 8px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 8px;
+  row-gap: 4px;
+}
+
+.tile-subcheck-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: #d8e4f3;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.tile-subcheck-item input {
+  margin: 0;
+}
+
+/* Completed tiles: translucent green state. */
+.tile.completed {
+  border-color: rgba(118, 210, 150, 0.62);
+  background: linear-gradient(165deg, rgba(47, 124, 77, 0.45), rgba(22, 78, 50, 0.45));
+}
+
+/* Slightly green-tinted progress input on completed tiles. */
+.tile.completed .tile-progress-input {
+  border-color: rgba(146, 226, 172, 0.65);
+  background: rgba(18, 67, 42, 0.45);
+}
+
+/* Green-tinted counter styles when a tile is marked complete. */
+.tile.completed .counter-btn,
+.tile.completed .counter-value {
+  border-color: rgba(146, 226, 172, 0.65);
+  background: transparent;
+}
+
+.tile.completed .tile-subcheck-item {
+  color: #d7f7e1;
+}
+
+/* Bottom summary bar showing total points from completed tiles. */
+.points-footer {
+  max-width: 1840px;
+  margin: 14px auto 0;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(161, 183, 214, 0.33);
+  border-radius: 12px;
+  background: rgba(15, 26, 40, 0.86);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  font-weight: 600;
+}
+
+/* Highlighted numeric value inside the points footer. */
+.points-footer span {
+  color: #8de2aa;
+}
+
+.points-summary {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1.3rem;
+}
+
+.bonus-lines {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.bonus-pill {
+  border: 1px solid rgba(141, 226, 170, 0.38);
+  border-radius: 999px;
+  background: rgba(40, 80, 58, 0.4);
+  color: #d7f7e1;
+  font-size: 0.76rem;
+  line-height: 1;
+  padding: 5px 10px;
+}
+
+.bonus-pill-muted {
+  border-color: rgba(173, 192, 217, 0.34);
+  background: rgba(46, 59, 75, 0.36);
+  color: #c8d4e6;
+}
+
+/* Compact spacing and typography tuning for small screens. */
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 22px 14px;
+  }
+
+  .board-header h1 {
+    font-size: 1.45rem;
+  }
+
+  .board-header p {
+    font-size: 0.85rem;
+  }
+
+  .points-footer {
+    margin-top: 12px;
+  }
+
+  .points-summary {
+    font-size: 1.15rem;
+  }
+}
