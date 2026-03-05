@@ -147,6 +147,19 @@ body {
   border-color: rgba(196, 216, 244, 0.52);
 }
 
+/* In-progress tiles: light orange state for partially worked tasks. */
+.tile.in-progress:not(.completed) {
+  border-color: rgba(247, 189, 121, 0.7);
+  background: linear-gradient(165deg, rgba(143, 95, 43, 0.45), rgba(88, 57, 25, 0.4));
+}
+
+.tile.in-progress:not(.completed) .tile-progress-input,
+.tile.in-progress:not(.completed) .counter-btn,
+.tile.in-progress:not(.completed) .counter-value {
+  border-color: rgba(255, 209, 152, 0.7);
+  color: #ffe8cf;
+}
+
 /* Keyboard accessibility ring for focused tiles. */
 .tile:focus-visible {
   outline: 2px solid #96c2ff;
