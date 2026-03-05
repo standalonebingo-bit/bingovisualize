@@ -4,7 +4,7 @@ import "./App.css";
 
 const STORAGE_PREFIX = "osrs-bingo-visualizer";
 const COMPLETION_STORAGE_KEY = `${STORAGE_PREFIX}:completed-tiles`;
-const SLOT_HEADERS = ["Helm", "Left Slot", "Necklace", "Ammo", "Main Hand", "Chest", "Off Hand", "Legs", "Gloves", "Boots", "Ring"] as const;
+const SLOT_HEADERS = ["Helm", "Left", "Necklace", "Ammo", "Main Hand", "Chest", "Off Hand", "Legs", "Gloves", "Boots", "Ring"] as const;
 
 type ProgressFieldProps = {
   initialValue: string;
@@ -66,6 +66,21 @@ function ProgressField({ initialValue }: ProgressFieldProps) {
 
     localStorage.setItem(storageKey, text);
   }, [count, hasCounter, storageKey, text]);
+
+  useEffect(() => {
+    const element = hasCounter ? counterRef.current : inputRef.current;
+    const tile = element?.closest(".tile");
+    if (!tile) {
+      return;
+    }
+
+    if (hasCounter) {
+      tile.classList.toggle("in-progress", count > 0);
+      return;
+    }
+
+    tile.classList.toggle("in-progress", text.trim() !== initialValue.trim());
+  }, [count, hasCounter, initialValue, text]);
 
   if (!hasCounter) {
     return (
